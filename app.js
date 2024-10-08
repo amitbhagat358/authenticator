@@ -1,9 +1,14 @@
 import express from "express"
 import path from 'path'
+import connectDB from './db.js'
 import {fileURLToPath} from 'url';
+import dotenv from 'dotenv';
 
 const app = express();
 const PORT = 5500;
+
+dotenv.config();
+connectDB();
 
 app.use(express.json());
 

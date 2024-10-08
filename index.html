@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Authenticator</title>
 </head>
+
 <body>
   <h1> Sign In </h1>
 
+  <form action="/submit">
+    <label for="email">Email</label>
+    <input name="email" type="email" placeholder="Enter email"/>
+    <br/>
 
-  <p>New User?  <a href="/register">register</a> here</p>
-  
+    <label for="password">Password</label>
+    <input name="password" type="password" placeholder="Enter password"/>
+
+    <br/>
+
+    <button> Submit</button>
+  </form>
+
+
+  <p>New User? <a href="/register">register</a> here</p>
+
 </body>
+
 </html>

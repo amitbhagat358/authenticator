@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Directory for local environment
+.env.local
+.env.*.local
+
+# Dependency directories
+/.pnp
+.pnp.js
+
+# IDE or Editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store    # macOS
+Thumbs.db    # Windows
+
+# Test coverage directories
+coverage/
+
+# Build output
+/dist
+/build
+/public/build

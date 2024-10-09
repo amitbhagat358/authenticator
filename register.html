@@ -9,7 +9,7 @@
   <h1>Register Here</h1>
 
   <form action="/register" method="post">
-    
+
     <label for="username">Username</label>
     <input name="username" type="text" placeholder="Enter username"/>
     <br/>
@@ -24,5 +24,16 @@
 
     <button> Submit</button>
   </form>
+
+  <p> You will be redirected to the login page after registration.</p>
+
+  
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message) {
+      alert(message);
+    }
+  </script>
 </body>
 </html>

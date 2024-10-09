@@ -9,10 +9,9 @@ const registerUser = async (req, res) => {
   if (!username || !email || !password) return res.send('Fill all fields');
 
   const existingUser = await User.findOne({ email });
-  console.log("hello ", existingUser);
 
   if (existingUser) {
-    return res.send('User already exists with given email');
+    return res.redirect("/register?message=Registration failed. User with email already exists.");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -33,17 +32,21 @@ const loginUser = async (req, res) => {
 
   const existingUser = await User.findOne({email});
   console.log(existingUser)
-  if(!existingUser)return res.send("No user with given email");
+  if(!existingUser)return res.redirect("/login?message=login failed. No user with given email");
 
   const isPasswordValid = await bcrypt.compare(password, existingUser.password);
 
-  if(!isPasswordValid) res.send(400).send("Incorrect Password");
-  else {
-    const token = await createToken(res, existingUser._id);
-    return res.redirect('/')
+  try{
+    if(!isPasswordValid) return res.redirect("/login?message=login failed. Incorrect Password");
+    else {
+      const token = await createToken(res, existingUser._id);
+      return res.redirect('/')
+    }
+  }
+  catch{
+    res.redirect("/login?message=Server error, please try again later.");
   }
 
-  res.status(500).send("internal server error");
 }
 
 const logoutUser = (req, res) => {

@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
   if(!isPasswordValid) res.send(400).send("Incorrect Password");
   else {
     const token = await createToken(res, existingUser._id);
-    return res.status(200).send("user logged in successFully");
+    return res.redirect('/')
   }
 
   res.status(500).send("internal server error");

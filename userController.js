@@ -6,7 +6,7 @@ const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
   console.log(username, email, password);
 
-  if (!username || !email || !password) return res.send('Fill all fields');
+  if (!username || !email || !password) return res.redirect('/register?message=Please fill all fields');
 
   const existingUser = await User.findOne({ email });
 
@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
 
   try{
     await newUser.save();
-    res.redirect('/');
+    res.redirect('/?message=Successfully Registered.');
   }
   catch{
     res.status(400)
@@ -29,6 +29,8 @@ const registerUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   const {email, password} = req.body;
+
+  if (!email || !password) return res.redirect('/login?message=Please fill all fields');
 
   const existingUser = await User.findOne({email});
   console.log(existingUser)
@@ -40,7 +42,7 @@ const loginUser = async (req, res) => {
     if(!isPasswordValid) return res.redirect("/login?message=login failed. Incorrect Password");
     else {
       const token = await createToken(res, existingUser._id);
-      return res.redirect('/')
+      return res.redirect('/?message=Successfully logged in');
     }
   }
   catch{

@@ -13,5 +13,13 @@
   <form action="/logout" method="post">
     <button type="submit">Logout</button>
   </form>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message) {
+      alert(message);
+    }
+  </script>
 </body>
 </html>

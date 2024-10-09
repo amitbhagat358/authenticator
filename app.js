@@ -1,8 +1,7 @@
 import express from "express"
 import path from 'path'
 import connectDB from './db.js'
-import { loginUser } from "./userController.js";
-import {registerUser} from "./userController.js";
+import { loginUser, registerUser, logoutUser} from "./userController.js";
 import {fileURLToPath} from 'url';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser'
@@ -36,7 +35,7 @@ app.get('/register', (req, res) => {
 
 app.post ('/register', registerUser);
 
-
+app.post('/logout', logoutUser);
 
 app.listen(PORT, () => {
   console.log(`Listening on port : ${PORT}`);

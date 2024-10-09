@@ -46,4 +46,13 @@ const loginUser = async (req, res) => {
   res.status(500).send("internal server error");
 }
 
-export { registerUser, loginUser};
+const logoutUser = (req, res) => {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+
+  res.redirect('/login');
+}
+
+export { registerUser, loginUser, logoutUser};
